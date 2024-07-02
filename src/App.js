@@ -1,63 +1,45 @@
 import './App.css';
 import './MyStyle.css';
-import { useState } from 'react';
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import Home from './Home';
 
 function App() {
-  const [count, setCount] = useState(0);
-
-  function click(){
-    setCount(count +1);
-  }
-
   return (
-    <div>
-      <h1>welcome react</h1>
-      <MyBtn count={count} onClick={click}/>
-      <MyBtn count={count} onClick={click}/>
-      <br/>
-      {myPicture}
-      <text className='myblue'>이름 : {info.name}</text><br/>
-      <text className='myblue'>전화번호 : {info.phone}</text>
-      <ul>{list}</ul>
-    </div>
+    <Router>
+      <div className="layout">
+        <div className="top">
+          <h1>Top Section</h1>
+        </div>
+        <div className="left">
+          <ul>{menuList}</ul>
+        </div>
+        <div className="main">
+          <Routes>
+            <Route path="/home" element={<Home />} />
+            <Route path="/about" element={<h2>소개 페이지</h2>} />
+            <Route path="/services" element={<h2>서비스 페이지</h2>} />
+            <Route path="/contact" element={<h2>연락처 페이지</h2>} />
+            <Route path="/blog" element={<h2>블로그 페이지</h2>} />
+            <Route path="/" element={<h2>환영합니다!</h2>} />
+          </Routes>
+        </div>
+      </div>
+    </Router>
   );
 }
 
-const info = {
-  name : '이양호',
-  phone : '010-9517-6366'
-};
+const menu = [
+  {name : '홈', id: '/home', url: '/home'},
+  {name : '소개', id: '/about', url: '/about'},
+  {name : '서비스', id: '/services', url: '/services'},
+  {name : '연락처', id: '/contact', url: '/contact'},
+  {name : '블로그', id: '/blog', url: '/blog'}
+]
 
-const myPicture = <img 
-                    className='myRadius' 
-                    src='./MyImages/myImage.png' 
-                    alt='ㅅㅅㅅ'
-                    style={{
-                      width:90,
-                      height:90
-                    }}
-                    />;
-
-const products = [
-  { title: 'Cabbage', id: 1 },
-  { title: 'Garlic', id: 2 },
-  { title: 'Apple', id: 3 },
-];                    
-const list = products.map(prod =>
-  <li key={prod.id}>
-    {prod.title}
+const menuList = menu.map(item =>
+  <li key={item.id}>
+    <Link to={item.url}>{item.name}</Link>
   </li>
-)
-
-
-function MyBtn({count, onClick}){
-  return(
-    <button onClick={onClick}>
-      clicked {count} times
-    </button>
-  )
-}
-
-
+);
 
 export default App;
