@@ -1,7 +1,8 @@
 import './App.css';
 import './MyStyle.css';
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './Home';
+import MenuList from './Menu'; // 새로운 컴포넌트 임포트
 
 function App() {
   return (
@@ -11,7 +12,7 @@ function App() {
           <h1>Top Section</h1>
         </div>
         <div className="left">
-          <ul>{menuList}</ul>
+          <MenuList /> {/* MenuList 컴포넌트 사용 */}
         </div>
         <div className="main">
           <Routes>
@@ -27,19 +28,5 @@ function App() {
     </Router>
   );
 }
-
-const menu = [
-  {name : '홈', id: '/home', url: '/home'},
-  {name : '소개', id: '/about', url: '/about'},
-  {name : '서비스', id: '/services', url: '/services'},
-  {name : '연락처', id: '/contact', url: '/contact'},
-  {name : '블로그', id: '/blog', url: '/blog'}
-]
-
-const menuList = menu.map(item =>
-  <li key={item.id}>
-    <Link to={item.url}>{item.name}</Link>
-  </li>
-);
 
 export default App;
