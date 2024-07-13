@@ -8,7 +8,7 @@ const menu = [
 
   {
 
-    name: '대메뉴1', id: 'main1', subMenu: [
+    name: '소개', id: 'main1', subMenu: [
 
       { name: '중메뉴1-1', id: 'sub1-1', subMenu: [
 
@@ -26,11 +26,11 @@ const menu = [
 
   {
 
-    name: '대메뉴2', id: 'main2', subMenu: [
+    name: '프로젝트', id: 'project', subMenu: [
 
-      { name: '중메뉴2-1', id: 'sub2-1', url: '/sub2-1' },
+      { name: 'TDX', id: 'tipsvalley', url: '/tipsvalley' },
 
-      { name: '중메뉴2-2', id: 'sub2-2', url: '/sub2-2' }
+      { name: '대한약품', id: 'daihan', url: '/daihan' }
 
     ]
 
@@ -60,7 +60,7 @@ const MenuItem = ({ item, level = 0 }) => {
 
       {item.url ? (
 
-        <Link to={item.url}>{item.name}</Link>
+        <Link to={item.url} style={{ textDecoration: 'none', color: 'inherit' }}>{item.name}</Link>
 
       ) : (
 
